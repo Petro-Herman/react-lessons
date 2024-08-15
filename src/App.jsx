@@ -46,16 +46,132 @@
 //   return <button onClick={() => alert("I'm a button!")}>CLick me!</button>;
 // };
 
+// const App = () => {
+//   const handleClick = (evt) => {
+//     console.log(evt);
+//   };
+
+//   return (
+//     <>
+//       <button onClick={handleClick}>First button</button>
+//       <button onClick={(evt) => console.log(evt)}>Second button</button>
+//     </>
+//   );
+// };
+
+// export default App;
+
+// import { useState } from "react";
+// import { ClickCounter } from "./ClickCounter";
+
+// const CustomButton = ({ message, children }) => {
+//   return <button onClick={() => alert(message)}>{children}</button>;
+// };
+
+// const App = () => {
+//   // let clicks = 0;
+//   const [clicks, setClicks] = useState(0);
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   const handleClick = () => {
+//     // clicks = clicks + 1;
+//     setClicks(clicks + 1);
+//   };
+
+//   const handleToggle = () => {
+//     setIsOpen(!isOpen);
+//   };
+
+//   return (
+//     <>
+//       <button onClick={handleClick}>Current: {clicks}</button>
+//       <button onClick={handleToggle}>{isOpen ? "Hide" : "Show"}</button>
+//       {isOpen && <p>Now you can see me!</p>}
+//       <CustomButton message="Playing music!">Play some music</CustomButton>
+//       <CustomButton message="Uploading your data!">Upload data</CustomButton>
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   return (
+//     <>
+//       <ClickCounter />
+//       <ClickCounter />
+//     </>
+//   );
+// };
+
+// const ClickCounter = ({ value, onUpdate }) => {
+//   return <button onClick={onUpdate}>Current: {value}</button>;
+// };
+
+// const App = () => {
+//   const [clicks, setClicks] = useState(0);
+
+//   const handleClick = () => {
+//     setClicks(clicks + 1);
+//   };
+
+//   return (
+//     <>
+//       <ClickCounter value={clicks} onUpdate={handleClick} />
+//       <ClickCounter value={clicks} onUpdate={handleClick} />
+//     </>
+//   );
+// };
+
+// const ClickCounter = ({ value, onUpdate }) => {
+//   return <button onClick={onUpdate}>Current: {value}</button>;
+// };
+
+// const App = () => {
+//   const [clicks, setClicks] = useState(0);
+
+//   const handleClick = () => {
+//     setClicks(clicks + 1);
+//   };
+
+//   return (
+//     <>
+//       <ClickCounter value={clicks} onUpdate={handleClick} />
+//       <ClickCounter value={clicks} onUpdate={handleClick} />
+//     </>
+//   );
+// };
+
+// export default App;
+
+import { useState } from "react";
+
 const App = () => {
-  const handleClick = (evt) => {
-    console.log(evt);
+  const [values, setValues] = useState({
+    x: 0,
+    y: 0,
+  });
+
+  const upDateX = () => {
+    setValues({
+      ...values,
+      x: values.x + 1,
+    });
+  };
+  const upDateY = () => {
+    setValues({
+      ...values,
+      y: values.y + 1,
+    });
   };
 
   return (
-    <>
-      <button onClick={handleClick}>First button</button>
-      <button onClick={(evt) => console.log(evt)}>Second button</button>
-    </>
+    <div>
+      <p>
+        x: {values.x}, y: {values.y}
+      </p>
+
+      <button onClick={upDateX}>Update x</button>
+      <button onClick={upDateY}>Update y</button>
+    </div>
   );
 };
 
