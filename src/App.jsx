@@ -142,37 +142,37 @@
 
 // export default App;
 
-import { useState } from "react";
+// import { useState } from "react";
 
-const App = () => {
-  const [values, setValues] = useState({
-    x: 0,
-    y: 0,
-  });
+// const App = () => {
+//   const [values, setValues] = useState({
+//     x: 0,
+//     y: 0,
+//   });
 
-  const upDateX = () => {
-    setValues({
-      ...values,
-      x: values.x + 1,
-    });
-  };
-  const upDateY = () => {
-    setValues({
-      ...values,
-      y: values.y + 1,
-    });
-  };
+//   const upDateX = () => {
+//     setValues({
+//       ...values,
+//       x: values.x + 1,
+//     });
+//   };
+//   const upDateY = () => {
+//     setValues({
+//       ...values,
+//       y: values.y + 1,
+//     });
+//   };
 
-  return (
-    <div>
-      <p>
-        x: {values.x}, y: {values.y}
-      </p>
+//   return (
+//     <div>
+//       <p>
+//         x: {values.x}, y: {values.y}
+//       </p>
 
-      <button onClick={upDateX}>Update x</button>
-      <button onClick={upDateY}>Update y</button>
-    </div>
-  );
-};
+//       <button onClick={upDateX}>Update x</button>
+//       <button onClick={upDateY}>Update y</button>
+//     </div>
+//   );
+// };
 
-export default App;
+// export default App;
