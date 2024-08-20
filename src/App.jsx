@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import { useState } from "react";
+import LangSwitcher from "./LangSwitcher";
 import LoginForm from "./LoginForm";
 import MyComponent from "./MyComponent";
+import SearchBar from "./SearchBar";
 
 // export default function App() {
 //   const [clicks, setClicks] = useState(0);
@@ -11,17 +14,64 @@ import MyComponent from "./MyComponent";
 // };
 
 export default function App() {
-const handleLogin = (userData) => {
-  console.log(userData);
-};
+  const handleLogin = (userData) => {
+    console.log(userData);
+  };
+  const [lang, setLang] = useState("uk");
+  const [coffeeSize, setCoffeeSize] = useState("sm");
 
-return (
-  <div>
-    <h1>Please login to your acccount!</h1>
+  const handleSizeChange = (evt) => {
+    setCoffeeSize(evt.target.value);
+  };
 
-    <LoginForm onLogin={handleLogin} />
+  return (
+    <div>
+      <h1>Please login to your acccount!</h1>
 
-    <MyComponent/>
-  </div>
-);
-};
+      <LoginForm onLogin={handleLogin} />
+
+      <MyComponent />
+      <SearchBar />
+      <>
+        <p>Selected language: {lang}</p>
+        <LangSwitcher value={lang} onSelect={setLang} />
+      </>
+      <>
+        <h1>Select coffee size</h1>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="sm"
+            checked={coffeeSize === "sm"}
+            onChange={handleSizeChange}
+          />
+          Small
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="md"
+            checked={coffeeSize === "md"}
+            onChange={handleSizeChange}
+          />
+          Medium
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="coffeeSize"
+            value="lg"
+            checked={coffeeSize === "lg"}
+            onChange={handleSizeChange}
+          />
+          Large
+        </label>
+        <p>
+          <b>Selected size:</b> {coffeeSize}
+        </p>
+      </>
+    </div>
+  );
+}

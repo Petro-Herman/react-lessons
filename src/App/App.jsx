@@ -1,9 +1,9 @@
-import css from "./App.module.css";
-import ClicksTraker from "../ClicksTraker/ClicksTraker";
-import Toggler from "./Toggler/Toggler";
-import { useState, useEffect } from "react";
-import Reader from "../Reader/Reader";
-import articles from "../articles.json";
+// import css from "./App.module.css";
+// import ClicksTraker from "../ClicksTraker/ClicksTraker";
+// import Toggler from "./Toggler/Toggler";
+// import { useState, useEffect } from "react";
+// import Reader from "../Reader/Reader";
+// import articles from "../articles.json";
 
 // export default function App() {
 //   const [clicks, setClicks] = useState(0);
@@ -68,12 +68,12 @@ import articles from "../articles.json";
 //   );
 // }
 
+// export default function App() {
+//   const [clicks, setClicks] = useState(0);
 
-
-export default function App() {
-  const [clicks, setClicks] = useState(0);
-
-  return (
-    <button onClick={() => setClicks(clicks + 1)}>You clicked {clicks} times</button>
-  );
-};
+//   return (
+//     <button onClick={() => setClicks(clicks + 1)}>
+//       You clicked {clicks} times
+//     </button>
+//   );
+// }
