@@ -24,6 +24,12 @@ export default function App() {
     setCoffeeSize(evt.target.value);
   };
 
+  const [hasAccepted, setHasAccepted] = useState(false);
+
+  const handleChange = (evt) => {
+    setHasAccepted(evt.target.checked);
+  };
+
   return (
     <div>
       <h1>Please login to your acccount!</h1>
@@ -72,6 +78,20 @@ export default function App() {
           <b>Selected size:</b> {coffeeSize}
         </p>
       </>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            name="terms"
+            checked={hasAccepted}
+            onChange={handleChange}
+          />
+          I accept terms and conditions
+        </label>
+        <button type="button" disabled={!hasAccepted}>
+          Proceed
+        </button>
+      </div>
     </div>
   );
 }
