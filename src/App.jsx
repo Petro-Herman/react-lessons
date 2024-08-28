@@ -1,35 +1,55 @@
+import axios from "axios";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { useEffect } from "react";
+import ArticleList from "./ArticleList";
+import { fetchArticlesWithTopic } from "./articles-api";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React amazing!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
-}
+  useEffect(() => {
+    async function fetchArticles () {
+      try {
+        setLoading(true);
+        const data = await fetchArticlesWithTopic("react");
+      // const response = await axios.get(
+      //   "https://hn.algolia.com/api/v1/search?query=react"
+      // );
+      setArticles(data);
+    } catch (error) {
+      setError(true);
+// обробка помилки
+    } finally {
+      setLoading(false);
+    }
+  }
+    fetchArticles();
+  }, []);
 
-export default App;
+return (
+  <div>
+    <h1>Latest articles</h1>
+
+    {loading && <p>Loading data, please wait...</p>}
+
+    {error && (<p>Whoops, something went wrong! Please try reloading this page!</p>)}
+
+    {articles.length > 0 && 
+    // (
+    //   <ul>
+    //     {articles.map(({objectID, url, title}) => (
+    //       <li key={objectID}>
+    //         <a href={url} target="_blank" rel="noreferrer noopener">{title}</a>
+    //       </li>
+    //     ))}
+    //   </ul>
+    // )
+    <ArticleList items={articles}/>
+    }
+  </div>
+);
+};
+
+
